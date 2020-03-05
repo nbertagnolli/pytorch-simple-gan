@@ -5,7 +5,11 @@ import unittest
 from ddt import data, ddt, unpack
 import numpy as np
 
-from utils import create_binary_list_from_int, generate_even_data, convert_float_matrix_to_int_list
+from utils import (
+    create_binary_list_from_int,
+    generate_even_data,
+    convert_float_matrix_to_int_list,
+)
 
 
 @ddt
@@ -41,9 +45,11 @@ class UtilsTest(unittest.TestCase):
             self.assertEqual(binary_num[-1], 0, test_description)
             self.assertEqual(len(binary_num), math.log(max_int, 2), test_description)
 
-    @data(([[.6, 0.2], [.5, .5]], [2, 3], "test two values"),)
+    @data(([[0.6, 0.2], [0.5, 0.5]], [2, 3], "test two values"))
     @unpack
-    def test_convert_float_matrix_to_int_list(self, matrix: List[List[float]], expected: List[int], test_description: str):
+    def test_convert_float_matrix_to_int_list(
+        self, matrix: List[List[float]], expected: List[int], test_description: str
+    ):
         matrix = np.array(matrix)
         output = convert_float_matrix_to_int_list(np.array(matrix))
         self.assertListEqual(expected, output, test_description)

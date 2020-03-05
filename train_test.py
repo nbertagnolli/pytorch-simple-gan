@@ -11,9 +11,10 @@ from train import train
 
 @ddt
 class TrainTest(unittest.TestCase):
-
-    @data((128, 16, 500, 0.001, "Test reasonable parameters"),
-          (256, 16, 500, 0.001, "Test reasonable parameters"))
+    @data(
+        (128, 16, 500, 0.001, "Test reasonable parameters"),
+        (256, 16, 500, 0.001, "Test reasonable parameters"),
+    )
     @unpack
     def test_train(
         self,

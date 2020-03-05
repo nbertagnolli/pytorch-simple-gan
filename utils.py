@@ -62,4 +62,6 @@ def convert_float_matrix_to_int_list(
     Returns:
         A list of integers.
     """
-    return [int("".join([str(int(y)) for y in x]), 2) for x in float_matrix >= threshold]
+    return [
+        int("".join([str(int(y)) for y in x]), 2) for x in float_matrix >= threshold
+    ]
