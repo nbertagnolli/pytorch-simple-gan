@@ -56,6 +56,7 @@ def train(
         # Generate examples of even real data
         true_labels, true_data = generate_even_data(max_int, batch_size=batch_size)
         true_labels = torch.tensor(true_labels).float()
+        true_labels = true_labels.unsqueeze(1)
         true_data = torch.tensor(true_data).float()
 
         # Train the generator
@@ -73,9 +74,10 @@ def train(
 
         # add .detach() here think about this
         generator_discriminator_out = discriminator(generated_data.detach())
-        generator_discriminator_loss = loss(
-            generator_discriminator_out, torch.zeros(batch_size)
-        )
+        # generator_discriminator_loss = loss(
+        #     generator_discriminator_out, torch.zeros(batch_size)
+        # )
+        generator_discriminator_loss = loss(generator_discriminator_out, torch.zeros(batch_size).unsqueeze(1))
         discriminator_loss = (
             true_discriminator_loss + generator_discriminator_loss
         ) / 2
